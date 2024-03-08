@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bfea02f1-7e46-41a9-b865-96c9078102e8" name="Changes" comment="creazione struttura classi e interfacce">
-      <change afterPath="$PROJECT_DIR$/src/esential/Luminosita.java" afterDir="false" />
+    <list default="true" id="bfea02f1-7e46-41a9-b865-96c9078102e8" name="Changes" comment="implementazione dei metodi richiesti+test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/esential/Immagine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/esential/Immagine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/esential/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/esential/Video.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/esercizio/mainEsercizio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/esercizio/mainEsercizio.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,11 +68,20 @@
       <option name="project" value="LOCAL" />
       <updated>1709891879304</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="implementazione dei metodi richiesti+test">
+      <option name="closed" value="true" />
+      <created>1709893467302</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1709893467302</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="creazione struttura classi e interfacce" />
-    <option name="LAST_COMMIT_MESSAGE" value="creazione struttura classi e interfacce" />
+    <MESSAGE value="implementazione dei metodi richiesti+test" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementazione dei metodi richiesti+test" />
   </component>
 </project>

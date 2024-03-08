@@ -1,5 +1,7 @@
 package esential;
 
+import java.util.Scanner;
+
 public class Immagine extends Multimediale implements Luminosita {
 
     private int luminosita;
@@ -9,19 +11,28 @@ public class Immagine extends Multimediale implements Luminosita {
         this.luminosita = luminosita;
     }
 
+    public int getLuminosita() {
+        return luminosita;
+    }
+
     @Override
     public void alzaLuminosita(int luminosita) {
-        this.luminosita = this.luminosita + luminosita;
-    }
+
+
+            this.luminosita = this.luminosita + luminosita;
+        }
 
     @Override
     public void abbassaLuminosita(int luminosita) {
         this.luminosita = this.luminosita - luminosita;
     }
 
-    public void show(){
+
+
+
+    public void show() {
         String luminosita = "*";
         String valoreLuminosita = luminosita.repeat(this.luminosita);
-        System.out.println(getTitle()+valoreLuminosita);
+        System.out.println(getTitle() + valoreLuminosita);
     }
 }
