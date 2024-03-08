@@ -12,6 +12,19 @@ public class Video extends Multimediale implements Riproducibile, Luminosita{
         this.luminosita = luminosita;
     }
 
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public int getDurata() {
+        return durata;
+    }
+
+    public int getLuminosita() {
+        return luminosita;
+    }
+
     @Override
     public void play() {
         String volume = "!";

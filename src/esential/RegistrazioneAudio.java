@@ -10,8 +10,13 @@ public class RegistrazioneAudio extends Multimediale implements Riproducibile{
         this.durata = durata;
     }
 
+    public int getVolume() {
+        return volume;
+    }
 
-
+    public int getDurata() {
+        return durata;
+    }
 
     @Override
     public void abbassaVolume(int volume) {

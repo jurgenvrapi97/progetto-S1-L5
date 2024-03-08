@@ -1,9 +1,12 @@
 package esercizio;
+
 import esential.Immagine;
 import esential.Multimediale;
 import esential.RegistrazioneAudio;
 import esential.Video;
+
 import java.util.Scanner;
+
 public class mainEsercizio {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -15,9 +18,10 @@ public class mainEsercizio {
             System.out.println("che tipo di file vuoi inserire Immagine(1), Video(2), Registrazione multimediale(3)");
             int scelta = Integer.parseInt(sc.nextLine());
 
-             tipoFile(file, scelta, sc, contatore) ;
+            tipoFile(file, scelta, sc, contatore);
+            contatore++;
             System.out.println("vuoi inserire un altro file? y/n");
-             fine = sc.nextLine();
+            fine = sc.nextLine();
 
         }
 
@@ -26,10 +30,13 @@ public class mainEsercizio {
         while (!fine.equals("n")) {
             System.out.println("quale file vuoi usare?(1,2,3,4,5)");
             indice = Integer.parseInt(sc.nextLine());
+            tipoDiFile(file[indice-1],indice);
         }
 
 
     }
+
+
 
     public static void tipoFile(Multimediale[] file, int scelta, Scanner sc, int contatore) {
         switch (scelta) {
@@ -38,7 +45,7 @@ public class mainEsercizio {
                 String imgTitolo = sc.nextLine();
                 System.out.println("inserisci luminosità max 10");
                 int imgLum = Integer.parseInt(sc.nextLine());
-                file[contatore] = new Immagine(imgTitolo,imgLum);
+                file[contatore] = new Immagine(imgTitolo, imgLum);
                 break;
             case 2:
                 System.out.println("inserisci titolo");
@@ -68,13 +75,160 @@ public class mainEsercizio {
 
     }
 
-    public static void tipoFile(Multimediale[] file, int indice){
+    public static void tipoDiFile(Multimediale file, int indice) {
 
-        if (indice >= 0 && indice < file.length){
-
+        if (indice >= 0) {
+            if (file instanceof Immagine) {
+                System.out.println("hai selezionato una immagine");
+                Immagine immagine = (Immagine) file;
+                eseguiImg(immagine);
+            } else if (file instanceof Video) {
+                System.out.println("hai selezionato un video");
+                Video video = (Video) file;
+                eseguiVideo(video);
+            }
         }
 
 
+    }
+
+
+    public static void eseguiImg(Immagine tipo) {
+        Scanner scanner = new Scanner(System.in);
+        int scelta;
+        System.out.println("premi '1' mostrare immagine o '2' per cambiare l'uminosità");
+        scelta = Integer.parseInt(scanner.nextLine());
+        if (scelta == 1) {
+            tipo.show();
+        } else {
+            System.out.println("la luminosità attuale è " + tipo.getLuminosita() + " '1' per alzare '2' per abbassare");
+            int richiesta;
+            richiesta = Integer.parseInt(scanner.nextLine());
+            if (richiesta == 1) {
+                System.out.println("di quanto?");
+                int valore;
+                valore = Integer.parseInt(scanner.nextLine());
+                int max = tipo.getLuminosita() + valore;
+                if (max < 10) {
+                    tipo.alzaLuminosita(valore);
+                    tipo.show();
+                } else {
+                    System.out.println("ha inserito un valore troppo alto riprova");
+                }
+            } else {
+                System.out.println("di quanto?");
+                int valore;
+                valore = Integer.parseInt(scanner.nextLine());
+                int min = tipo.getLuminosita() + valore;
+                if (min < 0) {
+                    tipo.abbassaLuminosita(valore);
+                    tipo.show();
+                } else {
+                    System.out.println("ha inserito un valore troppo alto riprova");
+                }
+            }
+        }
+    }
+
+    public static void eseguiVideo(Video tipo) {
+        Scanner scanner = new Scanner(System.in);
+        int scelta;
+        System.out.println("premi '1' riprodurre video, '2' per cambiare l'uminosità o '3' per cambiare volume");
+        scelta = Integer.parseInt(scanner.nextLine());
+        if (scelta == 1) {
+            tipo.play();
+        } else if (scelta == 2) {
+            System.out.println("la luminosità attuale è " + tipo.getLuminosita() + " '1' per alzare '2' per abbassare");
+            int richiesta;
+            richiesta = Integer.parseInt(scanner.nextLine());
+            if (richiesta == 1) {
+                System.out.println("di quanto?");
+                int valore;
+                valore = Integer.parseInt(scanner.nextLine());
+                int max = tipo.getLuminosita() + valore;
+                if (max < 10) {
+                    tipo.alzaLuminosita(valore);
+                } else {
+                    System.out.println("ha inserito un valore troppo alto riprova");
+                }
+            } else {
+                System.out.println("di quanto?");
+                int valore;
+                valore = Integer.parseInt(scanner.nextLine());
+                int min = tipo.getLuminosita() - valore;
+                if (min < 0) {
+                    tipo.abbassaLuminosita(valore);
+                } else {
+                    System.out.println("ha inserito un valore troppo alto riprova");
+                }
+            }
+        } else {
+            System.out.println("'1' per alzare o '2' per abbassare");
+            int sceltaVol;
+            sceltaVol= Integer.parseInt(scanner.nextLine());
+
+            if (sceltaVol < 1){
+                System.out.println("di quanto vui alzare");
+                int volumeUp;
+                volumeUp = Integer.parseInt(scanner.nextLine());
+                int max = tipo.getVolume()+volumeUp;
+                if (max < 10){
+                    tipo.alzaVolume(volumeUp);
+                    tipo.play();
+                } else{
+                    System.out.println("valore troppo alto");
+                }
+            } else {
+                System.out.println("di quatno vuoi abbassare?");
+                int volumedown;
+                volumedown = Integer.parseInt(scanner.nextLine());
+                int min = tipo.getVolume() - volumedown;
+                if (min > 0){
+                    tipo.abbassaVolume(volumedown);
+                    tipo.play();
+                } else {
+                    System.out.println("non pui inserire questo valore");
+                }
+            }
+        }
+    }
+
+    public static void eseguiAudio(RegistrazioneAudio tipo) {
+        Scanner scanner = new Scanner(System.in);
+        int scelta;
+        System.out.println("premi '1' riprodurre video o '2' per cambiare volume");
+        scelta = Integer.parseInt(scanner.nextLine());
+        if (scelta == 1) {
+            tipo.play();
+        }  else {
+            System.out.println("'1' per alzare o '2' per abbassare");
+            int sceltaVol;
+            sceltaVol= Integer.parseInt(scanner.nextLine());
+
+            if (sceltaVol < 1){
+                System.out.println("di quanto vui alzare");
+                int volumeUp;
+                volumeUp = Integer.parseInt(scanner.nextLine());
+                int max = tipo.getVolume()+volumeUp;
+                if (max < 10){
+                    tipo.alzaVolume(volumeUp);
+                    tipo.play();
+                } else{
+                    System.out.println("valore troppo alto");
+                }
+            } else {
+                System.out.println("di quatno vuoi abbassare?");
+                int volumedown;
+                volumedown = Integer.parseInt(scanner.nextLine());
+                int min = tipo.getVolume() - volumedown;
+                if (min > 0){
+                    tipo.abbassaVolume(volumedown);
+                    tipo.play();
+                } else {
+                    System.out.println("non pui inserire questo valore");
+                }
+            }
         }
     }
 }
+
