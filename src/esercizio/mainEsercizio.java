@@ -27,15 +27,19 @@ public class mainEsercizio {
 
         fine = "";
         int indice;
-        while (!fine.equals("n")) {
-            System.out.println("quale file vuoi usare?(1,2,3,4,5)");
+        while (true) {
+            System.out.println("inserisci (1,2,3,4,5) per selezionare un file oppure '0' per uscire");
             indice = Integer.parseInt(sc.nextLine());
-            tipoDiFile(file[indice-1],indice);
+            if (indice == 0) {
+            break;
+            } else {
+
+                tipoDiFile(file[indice - 1], indice);
+            }
         }
 
 
     }
-
 
 
     public static void tipoFile(Multimediale[] file, int scelta, Scanner sc, int contatore) {
@@ -86,6 +90,10 @@ public class mainEsercizio {
                 System.out.println("hai selezionato un video");
                 Video video = (Video) file;
                 eseguiVideo(video);
+            } else if (file instanceof RegistrazioneAudio) {
+                System.out.println("hai selezionato un audio");
+                RegistrazioneAudio audio = (RegistrazioneAudio) file;
+                eseguiAudio(audio);
             }
         }
 
@@ -148,6 +156,7 @@ public class mainEsercizio {
                 int max = tipo.getLuminosita() + valore;
                 if (max < 10) {
                     tipo.alzaLuminosita(valore);
+                    tipo.play();
                 } else {
                     System.out.println("ha inserito un valore troppo alto riprova");
                 }
@@ -158,6 +167,7 @@ public class mainEsercizio {
                 int min = tipo.getLuminosita() - valore;
                 if (min < 0) {
                     tipo.abbassaLuminosita(valore);
+                    tipo.play();
                 } else {
                     System.out.println("ha inserito un valore troppo alto riprova");
                 }
@@ -165,17 +175,17 @@ public class mainEsercizio {
         } else {
             System.out.println("'1' per alzare o '2' per abbassare");
             int sceltaVol;
-            sceltaVol= Integer.parseInt(scanner.nextLine());
+            sceltaVol = Integer.parseInt(scanner.nextLine());
 
-            if (sceltaVol < 1){
+            if (sceltaVol < 1) {
                 System.out.println("di quanto vui alzare");
                 int volumeUp;
                 volumeUp = Integer.parseInt(scanner.nextLine());
-                int max = tipo.getVolume()+volumeUp;
-                if (max < 10){
+                int max = tipo.getVolume() + volumeUp;
+                if (max < 10) {
                     tipo.alzaVolume(volumeUp);
                     tipo.play();
-                } else{
+                } else {
                     System.out.println("valore troppo alto");
                 }
             } else {
@@ -183,7 +193,7 @@ public class mainEsercizio {
                 int volumedown;
                 volumedown = Integer.parseInt(scanner.nextLine());
                 int min = tipo.getVolume() - volumedown;
-                if (min > 0){
+                if (min > 0) {
                     tipo.abbassaVolume(volumedown);
                     tipo.play();
                 } else {
@@ -196,24 +206,24 @@ public class mainEsercizio {
     public static void eseguiAudio(RegistrazioneAudio tipo) {
         Scanner scanner = new Scanner(System.in);
         int scelta;
-        System.out.println("premi '1' riprodurre video o '2' per cambiare volume");
+        System.out.println("premi '1' riprodurre audio o '2' per cambiare volume");
         scelta = Integer.parseInt(scanner.nextLine());
         if (scelta == 1) {
             tipo.play();
-        }  else {
+        } else {
             System.out.println("'1' per alzare o '2' per abbassare");
             int sceltaVol;
-            sceltaVol= Integer.parseInt(scanner.nextLine());
+            sceltaVol = Integer.parseInt(scanner.nextLine());
 
-            if (sceltaVol < 1){
+            if (sceltaVol < 1) {
                 System.out.println("di quanto vui alzare");
                 int volumeUp;
                 volumeUp = Integer.parseInt(scanner.nextLine());
-                int max = tipo.getVolume()+volumeUp;
-                if (max < 10){
+                int max = tipo.getVolume() + volumeUp;
+                if (max < 10) {
                     tipo.alzaVolume(volumeUp);
                     tipo.play();
-                } else{
+                } else {
                     System.out.println("valore troppo alto");
                 }
             } else {
@@ -221,7 +231,7 @@ public class mainEsercizio {
                 int volumedown;
                 volumedown = Integer.parseInt(scanner.nextLine());
                 int min = tipo.getVolume() - volumedown;
-                if (min > 0){
+                if (min > 0) {
                     tipo.abbassaVolume(volumedown);
                     tipo.play();
                 } else {
